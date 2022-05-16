@@ -1,4 +1,6 @@
 package com.dsavisualizer;
 
-public interface Algorithm {
+public abstract class Algorithm implements Visualizer
+{
+
 }

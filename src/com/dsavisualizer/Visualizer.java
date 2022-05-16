@@ -1,6 +1,6 @@
 package com.dsavisualizer;
 
-class Visualizer {
-
+public interface Visualizer
+{
 
 }
