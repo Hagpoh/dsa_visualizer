@@ -26,10 +26,10 @@ class VisualizeApp {
             System.out.println("Please select a data structure to visualize: ");
             System.out.println("1. Linked List");
             String input = scanner.nextLine();
-            if (input.matches("\\d")){
+            if (input.matches("\\d")) {
                 int intInput = Integer.parseInt(input);
-                switch (intInput){
-                    case 1 :
+                switch (intInput) {
+                    case 1:
                         System.out.println("You picked Linked List");
                         validInput = true;
                 }
@@ -44,10 +44,10 @@ class VisualizeApp {
             System.out.println("Please select an algorithm to visualize: ");
             System.out.println("1. Quick Sort");
             String input = scanner.nextLine();
-            if (input.matches("\\d")){
+            if (input.matches("\\d")) {
                 int intInput = Integer.parseInt(input);
-                switch (intInput){
-                    case 1 :
+                switch (intInput) {
+                    case 1:
                         System.out.println("You picked Quick Sort");
                         validInput = true;
                 }
@@ -58,7 +58,7 @@ class VisualizeApp {
     private void welcome() {
         try {
             List<String> welcome = Files.readAllLines(Path.of("resources/welcome.txt"));
-            for (String line : welcome){
+            for (String line : welcome) {
                 System.out.println(line);
             }
 
