@@ -1,6 +1,7 @@
 package com.dsavisualizer;
 
 import com.dsavisualizer.app.Color;
+import com.dsavisualizer.app.Color;
 import org.junit.Before;
 import org.junit.Test;
 
