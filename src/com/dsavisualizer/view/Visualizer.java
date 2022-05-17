@@ -5,5 +5,5 @@ import java.util.LinkedList;
 
 public interface Visualizer
 {
-
+    boolean search(int search);
 }
