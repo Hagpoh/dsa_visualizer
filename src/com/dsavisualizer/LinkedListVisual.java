@@ -27,14 +27,14 @@ public class LinkedListVisual implements Visualizer {
                     Thread.sleep(1500);
                 } else {
                     System.out.print(Color.GREEN.getColor() + item + " ");
-                    System.out.println("Value found!");
+                    System.out.println("Value found!" + Color.DEFAULT.getColor());
                     return true;
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("Value not found!");
+        System.out.println("Value not found!" + Color.DEFAULT.getColor());
         return false;
     }
 
@@ -75,7 +75,7 @@ public class LinkedListVisual implements Visualizer {
         System.out.print(line1);
         String line2 = (" ").repeat(count) + " \\" + "/ \n";
         System.out.print(line2);
-        System.out.println((" ").repeat(count + 1) + value);
+        System.out.println((" ").repeat(count + 1) + value + Color.DEFAULT.getColor());
     }
 
     public void sort() {
