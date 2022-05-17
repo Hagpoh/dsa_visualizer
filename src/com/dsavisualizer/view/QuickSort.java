@@ -1,5 +1,11 @@
-package com.dsavisualizer;
+package com.dsavisualizer.view;
 
+
+import com.dsavisualizer.app.Color;
+
+//TODO: Integrate this code into the LinkedListVisual Code as an inner class
+//TODO: specify that this is a sort that only performs natural ordering sort to show the implementation of the algorithm
+//      In the builtin implementation, we can use any data structure as a list with a given comparator class
 public class QuickSort
 {
     static class Node

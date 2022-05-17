@@ -1,4 +1,4 @@
-package com.dsavisualizer;
+package com.dsavisualizer.app;
 
 public enum Color {
     DEFAULT("\033[0m"),

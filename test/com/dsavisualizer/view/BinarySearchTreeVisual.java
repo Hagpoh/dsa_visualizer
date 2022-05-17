@@ -1,4 +1,4 @@
-package com.dsavisualizer;
+package com.dsavisualizer.view;
 
 class BinarySearchTreeVisual
 {

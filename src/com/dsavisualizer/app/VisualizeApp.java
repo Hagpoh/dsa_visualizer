@@ -1,6 +1,6 @@
 package com.dsavisualizer.app;
 
-import com.dsavisualizer.LinkedListVisual;
+import com.dsavisualizer.view.LinkedListVisual;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,14 +10,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-class VisualizeApp {
+class VisualizeApp
+{
     boolean exit;
     int dataStructureSelection;
     int algorithmSelection;
 
-    public void execute() {
+    public void execute()
+    {
         welcomeHeader();
-        while (!exit) {
+        while (!exit)
+        {
             promptForDataStructure();
             dataStructureSelection = getMenuInput();
             promptForAlgorithm();
@@ -26,11 +29,14 @@ class VisualizeApp {
         }
     }
 
-    private void performSelection() {
-        switch (dataStructureSelection) {
+    private void performSelection()
+    {
+        switch (dataStructureSelection)
+        {
             case 1: //Linked List
                 LinkedListVisual list = new LinkedListVisual(new LinkedList<>(Arrays.asList(1, 9, 15, 4, 8, 15))); //TODO add method for setting list
-                switch (algorithmSelection) {
+                switch (algorithmSelection)
+                {
                     case 1: //sort
                         list.sort();
                         break;
@@ -48,39 +54,49 @@ class VisualizeApp {
         }
     }
 
-
-    private int getMenuInput() {
+    //TODO:GetDataStructureUpperBound() GetAlgorithmUpperBound() to know whether to throw OutOfBounds exception
+    //TODO:Possibly use getIntInput() to clean this code up
+    private int getMenuInput()
+    {
         Scanner scanner = new Scanner(System.in);
         int input = -1;
 
-        while (input < 0) {
-            try {
+        while (input < 0)
+        {
+            try
+            {
                 System.out.print("Enter your choice: ");
                 input = Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException e)
+            {
                 System.out.println("Invalid selection. Please enter a valid selection.");
             }
         }
-        if (input == 0) {
+        if (input == 0)
+        {
             System.out.println("Thanks for using the DSA Analyzer!");
             System.exit(0);
         }
         return input;
     }
 
-    private int getIntInput() {
+    int getIntInput() //package private to test
+    {
         int input = 0;
         Scanner scanner = new Scanner(System.in);
-        try {
+        try
+        {
             input = Integer.parseInt(scanner.nextLine());
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e)
+        {
             System.out.println("Invalid selection. Please enter a valid selection.");
         }
         return input;
     }
 
     //TODO update to be dynamic based off of data structures and algorithms implemented.
-    private void promptForDataStructure() {
+    private void promptForDataStructure() //TODO: if doing unit test, make this method package-private
+    {
         System.out.println("Please select a data structure: ");
         System.out.println("1. Linked List");
         System.out.println("2. Binary Search Tree");
@@ -88,9 +104,11 @@ class VisualizeApp {
     }
 
     //TODO update to be dynamic based off of data structures and algorithms implemented.
-    private void promptForAlgorithm() {
+    private void promptForAlgorithm()//TODO: if doing unit test, make this method package-private
+    {
         System.out.println("Please select an algorithm: ");
-        switch (dataStructureSelection) {
+        switch (dataStructureSelection)
+        {
             case 1: //Linked List
                 System.out.println("1. Sort");
                 System.out.println("2. Search");
@@ -102,14 +120,18 @@ class VisualizeApp {
         }
     }
 
-    private void welcomeHeader() {
-        try {
+    void welcomeHeader() //package private to test
+    {
+        try
+        {
             List<String> welcome = Files.readAllLines(Path.of("resources/welcome.txt"));
-            for (String line : welcome) {
+            for (String line : welcome)
+            {
                 System.out.println(line);
             }
 
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
     }
