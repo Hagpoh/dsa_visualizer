@@ -11,15 +11,20 @@ public class LinkedListVisual implements Visualizer {
     }
 
     public boolean search(int searchValue) {
-        for (Integer item : list) {
-            System.out.print(item + " --> ");
+        for (int i = 0; i < list.size(); i++) {
+            if (i == list.size() - 1) {
+                System.out.print(list.get(i));
+            }
+            if (i < list.size() - 1) {
+                System.out.print(list.get(i) + " --> ");
+            }
         }
         System.out.print("\n");
         for (Integer item : list) {
             try {
                 if (!item.equals(searchValue)) {
                     System.out.print(Color.RED.getColor() + item + " --> ");
-                    Thread.sleep(1000);
+                    Thread.sleep(1500);
                 } else {
                     System.out.print(Color.GREEN.getColor() + item + " ");
                     System.out.println("Value found!");
@@ -38,28 +43,39 @@ public class LinkedListVisual implements Visualizer {
         int count = 0;
 
         for (int i = 0; i < index; i++) {
-            String out = list.get(i) + " --> ";
-            count += out.length();
-            System.out.print(out);
+            String out = null;
+            if (i == index - 1) {
+                out = list.get(i) + Color.RED.getColor() + " --> " + Color.DEFAULT.getColor();
+            }
+            if (i < index - 1) {
+                out = list.get(i) + " --> ";
+            }
+            if (out != null) {
+                count += out.length();
+                System.out.print(out);
+            }
         }
 
         for (int i = index + 1; i < list.size(); i++) {
-            String out = list.get(i) + " --> ";
-            System.out.print(out);
+            String out = null;
+            if (i == list.size() - 1) {
+                out = list.get(i).toString();
+            }
+            if (i < list.size() - 1) {
+                out = list.get(i) + " --> ";
+            }
+            if (out != null) {
+                System.out.print(out);
+            }
         }
 
-        count += 1;
+        count -= (Color.RED.getColor() + " --> " + Color.DEFAULT.getColor()).length();
         System.out.println();
         String line1 = Color.GREEN.getColor() + (" ").repeat(count) + "\\ " + " /\n";
         System.out.print(line1);
         String line2 = (" ").repeat(count) + " \\" + "/ \n";
         System.out.print(line2);
         System.out.println((" ").repeat(count + 1) + value);
-
-        for (Integer integer : list) {
-            String out = Color.DEFAULT.getColor() + integer + " --> ";
-            System.out.print(out);
-        }
     }
 
     public void sort() {
