@@ -34,7 +34,7 @@ public class VisualizeAppTest
     }
 
     @Test
-    public void invalidInputAfterDataStructureAndAlgorithmPrompt_shouldReturnInputRightBack()
+    public void invalidInputAfterDataStructureAndAlgorithmPrompt_shouldReturnZero()
     {
         String input = "e";
         InputStream in = new ByteArrayInputStream(input.getBytes());
