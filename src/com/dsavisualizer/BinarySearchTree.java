@@ -10,6 +10,8 @@ public class BinarySearchTree
 
     public boolean isEmpty()
     {
+        if(root == null && root.left == null && root.right == null)
+            return true;
         return false;
     }
 
@@ -20,7 +22,26 @@ public class BinarySearchTree
 
     public int size()
     {
-        return 0;
+        //PREORDER TRAVERSAL TO GET SIZE
+        int count = 0;
+
+        count = size(this.root, count);
+
+        return count;
+    }
+
+    private int size(Node root, int count)
+    {
+        int counter = count;
+
+        if(root != null)
+        {
+            counter++;
+            counter = size(root.left, counter);
+            counter = size(root.right, counter);
+        }
+
+        return counter;
     }
 
     //Node class setting up a basic node

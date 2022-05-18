@@ -13,6 +13,15 @@ import static com.dsavisualizer.BinarySearchTree.getRightNode;
 
 public class BinarySearchTreeVisual implements Visualizer
 {
+    public static void main(String[] args)
+    {
+        BinarySearchTree tree = new BinarySearchTree();
+        tree.insert(2);
+        tree.insert(1);
+        tree.insert(3);
+        tree.insert(4);
+
+    }
     //CLASS FIELDS--------------------------------------------------------------
     //--------------------------------------------------------------------------
     private BinarySearchTree bst = new BinarySearchTree();
@@ -26,11 +35,11 @@ public class BinarySearchTreeVisual implements Visualizer
     {
         this.bst = bst;
     }
-
     public static BinarySearchTreeVisual newInstance(BinarySearchTree bst)
     {
         return new BinarySearchTreeVisual(bst);
     }
+
     //Methods-------------------------------------------------------------------
     //--------------------------------------------------------------------------
     @Override
