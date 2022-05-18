@@ -40,23 +40,87 @@ public class IntegerListPrompterTest
         assertThrows(new IllegalArgumentException().getClass(), () -> IntegerListPrompter.newInstance(list, INVALID_NEEDED_VALUE_FOR_PROMPTER));
     }
 
-
-
     @Test
-    public void listAfterAdding_ReflectsNewAdditions()
+    public void listAfterAddingInvalidValues_shouldHaveOnlyValidNumbers()
     {
         LinkedList<Integer> MatchingList = new LinkedList<Integer>();
-        MatchingList.add(1);
         MatchingList.add(2);
+        MatchingList.add(1);
+        MatchingList.add(3);
 
-        String input1 = "1";
-        InputStream in1 = new ByteArrayInputStream(input1.getBytes());
-        System.setIn(in1);
+        String input = "2,q,899,1,e,3";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
         prompter.add();
 
         assertEquals(Arrays.toString(MatchingList.stream().toArray()), Arrays.toString(prompter.getIntegerList().stream().toArray()));
     }
 
+    @Test
+    public void listAfterAddingDuplicateValues_ShouldHaveUniqueValues()
+    {
+        LinkedList<Integer> MatchingList = new LinkedList<Integer>();
+        MatchingList.add(2);
+        MatchingList.add(1);
+        MatchingList.add(3);
+
+        String input = "2,1,3,3";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        prompter.add();
+
+        assertEquals(Arrays.toString(MatchingList.stream().toArray()), Arrays.toString(prompter.getIntegerList().stream().toArray()));
+    }
+
+    @Test
+    public void listAfterAdding_ReflectsNewAdditions()
+    {
+        LinkedList<Integer> MatchingList = new LinkedList<Integer>();
+        MatchingList.add(2);
+        MatchingList.add(1);
+        MatchingList.add(3);
+
+        String input = "2,1,3";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        prompter.add();
+
+        assertEquals(Arrays.toString(MatchingList.stream().toArray()), Arrays.toString(prompter.getIntegerList().stream().toArray()));
+    }
+
+    @Test
+    public void listAfterNotAddingEnoughValues_ShouldKeepRequestingMoreValues()
+    {
+        LinkedList<Integer> MatchingList = new LinkedList<Integer>();
+        MatchingList.add(2);
+        MatchingList.add(1);
+        MatchingList.add(3);
+
+        String input = "2,1,3";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        prompter.add(false);
+
+        assertEquals(Arrays.toString(MatchingList.stream().toArray()), Arrays.toString(prompter.getIntegerList().stream().toArray()));
+    }
+
+    @Test
+    public void listAfterNotAddingEnoughValue_ThenMeetingTheQuota_ShouldGiveTheCompleteList_withoutAddingDuplicateValue()
+    {
+        //place holder
+        assertFalse(true);
+        //TODO:find a way to read in next line to test this code below
+//        LinkedList<Integer> MatchingList = new LinkedList<Integer>();
+//        MatchingList.add(2);
+//        MatchingList.add(3);
+//
+//        String input = "2\n3,2";
+//        InputStream in = new ByteArrayInputStream(input.getBytes());
+//        System.setIn(in);
+//        prompter.add();
+//
+//        assertEquals(Arrays.toString(MatchingList.stream().toArray()), Arrays.toString(prompter.getIntegerList().stream().toArray()));
+    }
 
     //TODO: do more to test these methods below---------------------------------
     //--------------------------------------------------------------------------

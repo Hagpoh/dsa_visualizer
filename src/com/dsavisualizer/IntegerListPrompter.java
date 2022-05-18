@@ -1,5 +1,6 @@
 package com.dsavisualizer;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,7 +9,6 @@ public class IntegerListPrompter
 {
     //Fields--------------------------------------------------------------------
     //--------------------------------------------------------------------------
-    private Scanner scanner = new Scanner(System.in);
     private final int VALUES_NEEDED;
     private LinkedList<Integer> integerList;
 
@@ -33,8 +33,8 @@ public class IntegerListPrompter
     //--------------------------------------------------------------------------
     public void add()
     {
-        System.out.print("Enter all the values from 1-100 separated by a comma: ");
-        String input = scanner.next();
+        System.out.print("Enter the List's values separated by a comma\nOnly unique values from 1-100 accepted]: ");
+        String input = new Scanner(System.in).nextLine();
 
         //-----------------------------------------
         for (var i : input.split(","))
@@ -43,7 +43,9 @@ public class IntegerListPrompter
             if (i.matches("\\d{1,3}"))
             {
                 number = Integer.parseInt(i);
-                if (number > -1 && number < 101)
+                if(integerList.contains(number))
+                    duplicateValueMessage(number);
+                else if (number > -1 && number < 101)
                     integerList.add(number);
                 else invalidRangeMessage(number);
             }
@@ -77,6 +79,10 @@ public class IntegerListPrompter
     {
         System.out.println("The input \"" +  invalid + "\" is invalid and cannot be added to your list");
     }
+    void duplicateValueMessage(int duplicateValue)
+    {
+        System.out.println("The input \"" +  duplicateValue + "\" is already in the list and cannot be added again");
+    }
     void invalidRangeMessage(int invalidRange)
     {
         System.out.println("The input \"" +  invalidRange + "\" is out of the specified range and cannot be added to your list");
@@ -96,6 +102,6 @@ public class IntegerListPrompter
     //         LinkedList<Integer> list = new LinkedList<>();
     //         IntegerListPrompter prompter = newInstance(list, 2);
     //         prompter.add();
-    //         new Scanner(System.in).next();
+    //         System.out.println(Arrays.toString(prompter.getIntegerList().toArray()));
     //     }
 }
