@@ -1,16 +1,15 @@
 package com.dsavisualizer.view;
 
 import com.dsavisualizer.app.Color;
+import com.dsavisualizer.view.Visualizer;
 
 import java.util.LinkedList;
 
-public class LinkedListVisual implements Visualizer
-{
+public class LinkedListVisual implements Visualizer {
 
     LinkedList<Integer> list;
 
-    public LinkedListVisual(LinkedList<Integer> list)
-    {
+    public LinkedListVisual(LinkedList<Integer> list) {
         this.list = list;
     }
 
@@ -24,30 +23,25 @@ public class LinkedListVisual implements Visualizer
             }
         }
         System.out.print("\n");
-        for (Integer item : list)
-        {
-            try
-            {
-                if (!item.equals(searchValue))
-                {
+        for (Integer item : list) {
+            try {
+                if (!item.equals(searchValue)) {
                     System.out.print(Color.RED.getColor() + item + " --> ");
                     Thread.sleep(1500);
                 } else {
                     System.out.print(Color.GREEN.getColor() + item + " ");
-                    System.out.println("Value found!");
+                    System.out.println("Value found!" + Color.DEFAULT.getColor());
                     return true;
                 }
-            } catch (InterruptedException e)
-            {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("Value not found!");
+        System.out.println("Value not found!" + Color.DEFAULT.getColor());
         return false;
     }
 
-    public void add(int index, int value)
-    {
+    public void add(int index, int value) {
         list.add(index, value);
         int count = 0;
 
@@ -84,11 +78,10 @@ public class LinkedListVisual implements Visualizer
         System.out.print(line1);
         String line2 = (" ").repeat(count) + " \\" + "/ \n";
         System.out.print(line2);
-        System.out.println((" ").repeat(count + 1) + value);
+        System.out.println((" ").repeat(count + 1) + value + Color.DEFAULT.getColor());
     }
 
-    public void sort()
-    {
+    public void sort() {
 
     }
 }
