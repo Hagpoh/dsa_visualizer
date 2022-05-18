@@ -17,7 +17,6 @@ class VisualizeApp
     int dataStructureSelection;
     int algorithmSelection;
 
-    //Execute method run in main
     public void execute()
     {
         welcomeHeader();
@@ -129,7 +128,6 @@ class VisualizeApp
         }
     }
 
-    //Prints the header from a text file in resources
     void welcomeHeader() //package private to test
     {
         try

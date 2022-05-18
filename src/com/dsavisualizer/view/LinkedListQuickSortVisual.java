@@ -6,7 +6,7 @@ import com.dsavisualizer.app.Color;
 //TODO: Integrate this code into the LinkedListVisual Code as an inner class
 //TODO: specify that this is a sort that only performs natural ordering sort to show the implementation of the algorithm
 //      In the builtin implementation, we can use any data structure as a list with a given comparator class
-public class QuickSort
+public class LinkedListQuickSortVisual
 {
     static class Node
     {
@@ -53,13 +53,19 @@ public class QuickSort
         return count;
     }
 
-    void printList(Node n)
+    void printList(Node g)
     {
         System.out.print("head --> ");
 
+        Node n = this.head;
+
         while (n != null)
         {
-            System.out.print(n.data);
+            if (g == n)
+                System.out.print(Color.RED.getColor()+n.data+Color.DEFAULT.getColor());
+            else
+                System.out.print(n.data);
+
             System.out.print(" --> ");
             n = n.next;
         }
@@ -72,6 +78,7 @@ public class QuickSort
 
         while (n != null)
         {
+            //TODO: repeating sout statements.. make a new method for this
             if(marker1 == n && n == marker2)
                 System.out.print(Color.BLUE.getColor() + n.data + Color.DEFAULT.getColor());
             else if(n == marker1)
@@ -121,23 +128,31 @@ public class QuickSort
         Node curr = start;
         int pivot = end.data;
 
-        System.out.println("The pivot node is " + pivot);
+        System.out.println("\nThe pivot node is " + pivot);
 
         // iterate till one before the end,
         // no need to iterate till the end
         // because end is pivot
         while (start != end)
         {
+
             if (start.data < pivot)
             {
                 // keep tracks of last modified item
                 pivot_prev = curr;
-                System.out.format("\nCheck: The node %d is less than the pivot node %d\n",  start.data, pivot);
+                printList(start, end);
+                System.out.format("Check: The node %d is less than the pivot node %d\n\n",  start.data, pivot);
                 int temp = curr.data;
                 curr.data = start.data;
                 start.data = temp;
                 curr = curr.next;
 
+            }
+            else
+            {
+
+                System.out.format("Check: The node %d is greater than the pivot node %d\n\n",  start.data, pivot);
+                break;
             }
             start = start.next;
         }
@@ -145,11 +160,23 @@ public class QuickSort
         // swap the position of curr i.e.
         // next suitable index and pivot
         if(curr.data != end.data)
-            System.out.format("\nThe position of the current node %d will be swapped with %d\n", curr.data, end.data);
-        int temp = curr.data;
-        curr.data = pivot;
-        end.data = temp;
-        printList(curr,end);
+        {
+            System.out.format("Because %d is less than %d, their positions will be swapped\n", end.data, curr.data);
+            printList(end);
+        }
+
+        if(curr.data == pivot && pivot ==end.data)
+            System.out.println(Color.BLUE.getColor()+"This node is in the right position"+ Color.DEFAULT.getColor());
+
+        else
+        {
+            int temp = curr.data;
+            curr.data = pivot;
+            end.data = temp;
+            printList(end);
+        }
+
+
 
         // return one previous to current
         // because current is now pointing to pivot
@@ -160,7 +187,6 @@ public class QuickSort
     {
         if (start == null || start == end || start == end.next) return;
 
-        this.printList(this.head, start, end);
 
         // split list and partition recurse
         Node pivot_prev = paritionLast(start, end);
@@ -183,29 +209,26 @@ public class QuickSort
         }
     }
 
-    public
-    static void main(String[] args)
-    {
-        QuickSort list
-                = new QuickSort();
-        list.addNode(30);
-        list.addNode(24);
-        list.addNode(50);
-        list.addNode(1);
-        list.addNode(266);
-
-        Node n = list.head;
-        while (n.next != null)
-            n = n.next;
-
-        System.out.println("Linked List before sorting");
-        list.printList(list.head);
-        System.out.println("\n---------------------------");
-
-        list.sort(list.head, n);
-
-        System.out.println("---------------------------");
-        System.out.println("Linked List after sorting");
-        list.printList(list.head);
-    }
+//    public static void main(String[] args)
+//    {
+//        QuickSort list
+//                = new QuickSort();
+//        list.addNode(30);
+//        list.addNode(24);
+//        list.addNode(50);
+//        list.addNode(1);
+//        list.addNode(266);
+//
+//        Node n = list.head;
+//        while (n.next != null)
+//            n = n.next;
+//
+//        System.out.println("Linked List before sorting");
+//        list.printList(list.head);
+//
+//        list.sort(list.head, n);
+//
+//        System.out.println("Linked List after sorting");
+//        list.printList(list.head);
+//    }
 }

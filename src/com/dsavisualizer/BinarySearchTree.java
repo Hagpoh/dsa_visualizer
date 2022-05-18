@@ -1,13 +1,36 @@
 package com.dsavisualizer;
 
-public class BinarySearchTreeBase {
+
+public class BinarySearchTree
+{
+    public boolean search(int number)
+    {
+        return false;
+    }
+
+    public boolean isEmpty()
+    {
+        return false;
+    }
+
+    public void balance()
+    {
+
+    }
+
+    public int size()
+    {
+        return 0;
+    }
 
     //Node class setting up a basic node
-    public class Node {
-        int key;
-        Node left, right;
+    public class Node
+    {
+        public int key;
+        public Node left, right;
 
-        public Node(int key) {
+        public Node(int key)
+        {
             this.key = key;
         }
     }
@@ -15,22 +38,27 @@ public class BinarySearchTreeBase {
     public Node root;
 
     // Constructor
-    public BinarySearchTreeBase() {
+    public BinarySearchTree()
+    {
         root = null;
     }
 
-    BinarySearchTreeBase(int value) {
+    public BinarySearchTree(int value)
+    {
         root = new Node(value);
     }
 
     // Calls the insertRec method passing in root node and provided key
-    public void insert(int key) {
+    public void insert(int key)
+    {
         root = insertRec(root, key);
     }
 
-    Node insertRec(Node root, int key) {
+    Node insertRec(Node root, int key)
+    {
         // Check tree to see if empty
-        if (root == null) {
+        if (root == null)
+        {
             root = new Node(key);
             return root;
         }
@@ -45,17 +73,21 @@ public class BinarySearchTreeBase {
     }
 
     // Call inorderRec passing in root node
-    public void inorder() {
+    public void inorder()
+    {
         inorderRec(root);
     }
 
-    public void preorder() {
+    public void preorder()
+    {
         preorderRec(root);
     }
 
     // Preorder traversal of BST
-    public void preorderRec(Node node) {
-        if (node != null) {
+    public void preorderRec(Node node)
+    {
+        if (node != null)
+        {
             System.out.println(node.key);
             preorderRec(node.left);
             preorderRec(node.right);
@@ -63,8 +95,10 @@ public class BinarySearchTreeBase {
     }
 
     // Inorder traversal of BST
-    void inorderRec(Node root) {
-        if (root != null) {
+    void inorderRec(Node root)
+    {
+        if (root != null)
+        {
             inorderRec(root.left);
             System.out.println(root.key);
             inorderRec(root.right);
@@ -73,21 +107,25 @@ public class BinarySearchTreeBase {
 
     //Getters & Setters---------------------------------------------------------
     //--------------------------------------------------------------------------
-    public static boolean branchIsEmpty(Node node) {
+    public static boolean branchIsEmpty(Node node)
+    {
         if (node.left == null && node.right == null)
             return true;
         return false;
     }
 
-    public int getKey() {
+    public int getKey()
+    {
         return this.root.key;
     }
 
-    public static Node getLeftNode(Node node) {
+    public static Node getLeftNode(Node node)
+    {
         return node.left;
     }
 
-    public static Node getRightNode(Node node) {
+    public static Node getRightNode(Node node)
+    {
 
         return node.right;
     }
