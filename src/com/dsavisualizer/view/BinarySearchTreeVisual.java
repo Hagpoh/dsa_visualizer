@@ -1,15 +1,15 @@
 package com.dsavisualizer.view;
 
-import com.dsavisualizer.BinarySearchTree;
-import static com.dsavisualizer.BinarySearchTree.branchIsEmpty;
-import static com.dsavisualizer.BinarySearchTree.getLeftNode;
-import static com.dsavisualizer.BinarySearchTree.getRightNode;
+import com.dsavisualizer.BinarySearchTreeBase;
+import static com.dsavisualizer.BinarySearchTreeBase.branchIsEmpty;
+import static com.dsavisualizer.BinarySearchTreeBase.getLeftNode;
+import static com.dsavisualizer.BinarySearchTreeBase.getRightNode;
 
 public class BinarySearchTreeVisual implements Visualizer
 {
     //CLASS FIELDS--------------------------------------------------------------
     //--------------------------------------------------------------------------
-    private BinarySearchTree bst = new BinarySearchTree();
+    private BinarySearchTreeBase bst = new BinarySearchTreeBase();
     private final Boolean VERBOSE_TREE = true;
     private final Boolean VALUE_FOUND = true;
     private final Boolean VALUE_NOT_FOUND = false;
@@ -39,19 +39,19 @@ public class BinarySearchTreeVisual implements Visualizer
 
         else if(bst.getKey() < searchValue)
         {
-            BinarySearchTree.Node leftNode = getLeftNode(this.bst.root);
+            BinarySearchTreeBase.Node leftNode = getLeftNode(this.bst.root);
             printTree(leftNode, !VERBOSE_TREE);
             return search(leftNode, searchValue);
         }
         else //bst.getLeftNodeValue() > search
         {
-            BinarySearchTree.Node rightNode = getRightNode(this.bst.root);
+            BinarySearchTreeBase.Node rightNode = getRightNode(this.bst.root);
             printTree(rightNode, !VERBOSE_TREE);
             return search(rightNode, searchValue);
         }
     }
     //Recursive helper method
-    public boolean search(BinarySearchTree.Node node, int searchValue)
+    public boolean search(BinarySearchTreeBase.Node node, int searchValue)
     {
         //BASE CASES-----------------------------------
         //tree is empty
@@ -69,14 +69,14 @@ public class BinarySearchTreeVisual implements Visualizer
 
         else if(bst.getKey() < searchValue)
         {
-            BinarySearchTree.Node leftNode = bst.getLeftNode(node);
+            BinarySearchTreeBase.Node leftNode = bst.getLeftNode(node);
             printTree(leftNode, !VERBOSE_TREE);
             return search(getLeftNode(node), searchValue);
         }
 
         else // (bst.getLeftNodeValue() > search)
         {
-            BinarySearchTree.Node leftNode = bst.getLeftNode(node);
+            BinarySearchTreeBase.Node leftNode = bst.getLeftNode(node);
             printTree(leftNode, !VERBOSE_TREE);
             return search(getRightNode(node), searchValue);
         }
@@ -86,11 +86,10 @@ public class BinarySearchTreeVisual implements Visualizer
     public void addNode(int nodeValue)
     {
         bst.insert(nodeValue);
-        printTree();
     }
 
 
-    private void printTree(BinarySearchTree.Node root, boolean printCompleteTree)
+    private void printTree(BinarySearchTreeBase.Node root, boolean printCompleteTree)
     {
         System.out.println();
 

@@ -35,7 +35,7 @@ public class IntegerListPrompterTest
         assertThrows(new IllegalArgumentException().getClass(), () -> IntegerListPrompter.newInstance(list, VALID_NEEDED_VALUE_FOR_PROMPTER));
 
         list = new LinkedList<>();
-        
+
         //testing invalid "valueNeeded" argument and valid List argument
         assertThrows(new IllegalArgumentException().getClass(), () -> IntegerListPrompter.newInstance(list, INVALID_NEEDED_VALUE_FOR_PROMPTER));
     }

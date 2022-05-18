@@ -1,5 +1,6 @@
 package com.dsavisualizer.app;
 
+import com.dsavisualizer.IntegerListPrompter;
 import com.dsavisualizer.view.LinkedListVisual;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ class VisualizeApp
     int dataStructureSelection;
     int algorithmSelection;
 
+    //Execute method run in main
     public void execute()
     {
         welcomeHeader();
@@ -29,12 +31,15 @@ class VisualizeApp
         }
     }
 
+    //Performs the given action depending on the input provided by the user
     private void performSelection()
     {
         switch (dataStructureSelection)
         {
             case 1: //Linked List
-                LinkedListVisual list = new LinkedListVisual(new LinkedList<>(Arrays.asList(1, 9, 15, 4, 8, 15))); //TODO add method for setting list
+                IntegerListPrompter prompter = IntegerListPrompter.newInstance(new LinkedList<Integer>(), 2);
+                prompter.add();
+                LinkedListVisual list = new LinkedListVisual(prompter.getIntegerList()); //TODO add method for setting list
                 switch (algorithmSelection)
                 {
                     case 1: //sort
@@ -56,6 +61,7 @@ class VisualizeApp
 
     //TODO:GetDataStructureUpperBound() GetAlgorithmUpperBound() to know whether to throw OutOfBounds exception
     //TODO:Possibly use getIntInput() to clean this code up
+    //Gets menu input
     private int getMenuInput()
     {
         Scanner scanner = new Scanner(System.in);
@@ -80,6 +86,7 @@ class VisualizeApp
         return input;
     }
 
+    //Gets an integer value input
     int getIntInput() //package private to test
     {
         int input = 0;
@@ -95,6 +102,7 @@ class VisualizeApp
     }
 
     //TODO update to be dynamic based off of data structures and algorithms implemented.
+    //Menu that prints Data Structure options
     private void promptForDataStructure() //TODO: if doing unit test, make this method package-private
     {
         System.out.println("Please select a data structure: ");
@@ -104,6 +112,7 @@ class VisualizeApp
     }
 
     //TODO update to be dynamic based off of data structures and algorithms implemented.
+    //Menu that prints algorithm options
     private void promptForAlgorithm()//TODO: if doing unit test, make this method package-private
     {
         System.out.println("Please select an algorithm: ");
@@ -120,6 +129,7 @@ class VisualizeApp
         }
     }
 
+    //Prints the header from a text file in resources
     void welcomeHeader() //package private to test
     {
         try

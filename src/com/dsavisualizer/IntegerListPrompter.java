@@ -39,6 +39,7 @@ public class IntegerListPrompter
         //-----------------------------------------
         for (var i : input.split(","))
         {
+            i = i.trim();
             int number;
             if (i.matches("\\d{1,3}"))
             {
@@ -90,7 +91,7 @@ public class IntegerListPrompter
 
     //Getters & Setters---------------------------------------------------------
     //--------------------------------------------------------------------------
-    public List<Integer> getIntegerList()
+    public LinkedList<Integer> getIntegerList()
     {
         return integerList;
     }
