@@ -42,7 +42,7 @@ class VisualizeApp
                 switch (algorithmSelection)
                 {
                     case 1: //sort
-                        list.sort();
+                        list.sort(); //Call the method for sorting the Linked List here.
                         break;
                     case 2: //search
                         System.out.print("Please input an integer to search for: ");
