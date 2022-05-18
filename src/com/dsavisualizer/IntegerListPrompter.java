@@ -33,44 +33,69 @@ public class IntegerListPrompter
     //--------------------------------------------------------------------------
     public void add()
     {
-        while (true)
+        System.out.print("Enter all the values from 1-100 separated by a comma: ");
+        String input = scanner.next();
+
+        //-----------------------------------------
+        for (var i : input.split(","))
         {
-            System.out.print("If you wish to quit enter [Q]\n\n" +
-                                     "To add starting values to your list enter a number from 1-100:");
-            String input = scanner.next();
             int number;
-            if (input.matches("\\d{1,3}"))
+            if (i.matches("\\d{1,3}"))
             {
-                number = Integer.parseInt(input);
+                number = Integer.parseInt(i);
                 if (number > -1 && number < 101)
                     integerList.add(number);
+                else invalidRangeMessage(number);
             }
-
-            //Exit loop
-            //TODO: allow user to type in numbers seperated by commas
-            //TODO: Make sure List has sufficient enough values for algorithm
-            if (input.equals("q") && integerList.size() < VALUES_NEEDED)
-            {
-                System.out.format("\nYou need %d values in your list.\nYou have %d. Please continue to add more values.", VALUES_NEEDED, integerList.size());
-            }
-
-            else if (input.equals("q")) // AND therefore must be equal to or greater than the values needed
-                break;
+            else invalidInputMessage(i);
         }
+        //-----------------------------------------
+
+        add(meetsValuesNeeded());//Recurse if does not meet values needed
+    }
+    //Overloaded add method
+    public void add(boolean meetValuesNeeded)
+    {
+        if(meetValuesNeeded)
+            return;
+        //else
+        System.out.println("Please add more values");
+        add();
+    }
+    boolean meetsValuesNeeded()
+    {
+        if(getIntegerList().size() < VALUES_NEEDED)
+        {
+            System.out.println("You did not meet the required amount of values needed for the Data Structure");
+            return false;
+        }
+        //else
+        return true;
+    }
+    //TODO: Make Exceptions for these errors instead of method messages
+    void invalidInputMessage(String invalid)
+    {
+        System.out.println("The input \"" +  invalid + "\" is invalid and cannot be added to your list");
+    }
+    void invalidRangeMessage(int invalidRange)
+    {
+        System.out.println("The input \"" +  invalidRange + "\" is out of the specified range and cannot be added to your list");
     }
 
+    //Getters & Setters---------------------------------------------------------
+    //--------------------------------------------------------------------------
     public List<Integer> getIntegerList()
     {
         return integerList;
     }
 
-
-//    public static void main(String[] args)
-//    {
-//        LinkedList<Integer> list = new LinkedList<>();
-//        IntegerListPrompter prompter = newInstance(list, 2);
-//
-//        prompter.add();
-//
-//    }
+    //--------------------------------------------------------------------------
+    //Meant to test the add method
+    //     public static void main(String[] args)
+    //     {
+    //         LinkedList<Integer> list = new LinkedList<>();
+    //         IntegerListPrompter prompter = newInstance(list, 2);
+    //         prompter.add();
+    //         new Scanner(System.in).next();
+    //     }
 }
