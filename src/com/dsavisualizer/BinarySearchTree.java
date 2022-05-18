@@ -38,7 +38,6 @@ public class BinarySearchTree
 
     Node insertRec(Node root, int key)
     {
-
         // Check tree to see if empty
         if (root == null)
         {

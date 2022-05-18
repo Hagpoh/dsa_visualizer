@@ -83,9 +83,10 @@ public class BinarySearchTreeVisual implements Visualizer
 
     }
 
-    public void addNode()
+    public void addNode(int nodeValue)
     {
-
+        bst.insert(nodeValue);
+        printTree();
     }
 
 
@@ -96,7 +97,8 @@ public class BinarySearchTreeVisual implements Visualizer
         if(printCompleteTree)
         {
             //TODO: print whole tree
-            //TODO: print root node red and all other nodes default
+            //TODO: print "root" node red and all other nodes default
+            // THIS DOES NOT NEED TO BE THE ROOT NODE BUT THE root THAT'S PASSED IN
         }
 
         //else only print subtree of this node and the children nodes
