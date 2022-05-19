@@ -181,7 +181,7 @@ public class BinarySearchTree implements DataStructure
     //--------------------------------------------------------------------------
     public static boolean branchIsEmpty(Node node)
     {
-        if (node.left == null && node.right == null)
+        if (node == null || node.left == null && node.right == null)
             return true;
         return false;
     }

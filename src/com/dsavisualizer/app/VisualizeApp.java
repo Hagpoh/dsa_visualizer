@@ -1,5 +1,6 @@
 package com.dsavisualizer.app;
 
+import com.apps.util.Console;
 import com.dsavisualizer.BinarySearchTree;
 import com.dsavisualizer.view.BinarySearchTreeVisual;
 import com.dsavisualizer.view.LinkedListVisual;
@@ -8,6 +9,7 @@ import com.dsavisualizer.LinkedList;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,9 +30,12 @@ class VisualizeApp
         {
             promptForDataStructure();
             dataStructureSelection = getMenuInput();
+            System.out.println();
             promptForAlgorithm();
             algorithmSelection = getMenuInput();
+            System.out.println();
             performSelection();
+            Console.clear();
         }
     }
     //Performs the given action depending on the input provided by the user
@@ -63,7 +68,7 @@ class VisualizeApp
             switch (algorithmSelection)
             {
                 case 1://Add
-                    System.out.print("Please enter the index then value of what you want to add: ");
+                    System.out.print("Please enter the value of what you want to add: ");
                     bstVisual.addNode(getIntInput());
                 case 2: //Search
                     System.out.print("Please input an integer to search for: ");
@@ -86,10 +91,12 @@ class VisualizeApp
             try
             {
                 System.out.print("Enter your choice: ");
-                input = Integer.parseInt(scanner.nextLine());
+                input = Integer.parseInt(scanner.next("\\d"));
             } catch (NumberFormatException e)
             {
                 System.out.println("Invalid selection. Please enter a valid selection.");
+            } catch (InputMismatchException e){
+                System.out.println("Please input only 1 digit.");
             }
         }
         if (input == 0)
@@ -139,7 +146,9 @@ class VisualizeApp
                 System.out.println("0. Exit");
                 break;
             case 2: //Binary Search Tree
-                System.out.println("Nothing right now");
+                System.out.println("1. Add");
+                System.out.println("2. Search");
+                System.out.println("0. Exit");
         }
     }
 
