@@ -83,12 +83,12 @@ public class BinarySearchTreeTest
     }
 
     @Test
-    public void getKeyShouldReturnProperValueOfTheCurrentNode()
+    public void getRootKeyShouldReturnProperValueOfTheCurrentNode()
     {
         tree.insert(1);
         tree.root.right = new Node(2);
 
-        assertEquals(1, tree.getKey());
+        assertEquals(1, tree.getRootKey());
         //TODO: how to test right node??
     }
 
