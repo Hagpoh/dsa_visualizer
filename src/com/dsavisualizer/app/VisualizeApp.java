@@ -1,22 +1,26 @@
 package com.dsavisualizer.app;
 
-import com.dsavisualizer.IntegerListPrompter;
+import com.dsavisualizer.BinarySearchTree;
+import com.dsavisualizer.view.BinarySearchTreeVisual;
 import com.dsavisualizer.view.LinkedListVisual;
+import com.dsavisualizer.LinkedList;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 class VisualizeApp
 {
+    //Fields--------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     boolean exit;
     int dataStructureSelection;
     int algorithmSelection;
 
+    //Methods-------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     public void execute()
     {
         welcomeHeader();
@@ -29,32 +33,43 @@ class VisualizeApp
             performSelection();
         }
     }
-
     //Performs the given action depending on the input provided by the user
     private void performSelection()
     {
         switch (dataStructureSelection)
         {
             case 1: //Linked List
-                IntegerListPrompter prompter = IntegerListPrompter.newInstance(new LinkedList<Integer>(), 2);
+                IntegerListPrompter prompter = IntegerListPrompter.newInstance(new LinkedList(), 2);
                 prompter.add();
-                LinkedListVisual list = new LinkedListVisual(prompter.getIntegerList()); //TODO add method for setting list
+                LinkedListVisual listVisual = new LinkedListVisual(prompter.getIntegerList()); //TODO add method for setting list
                 switch (algorithmSelection)
                 {
                     case 1: //sort
-                        list.sort(); //Call the method for sorting the Linked List here.
+                        listVisual.sort(listVisual.list.head, listVisual.list.lastNode()); //Call the method for sorting the Linked List here.
                         break;
                     case 2: //search
                         System.out.print("Please input an integer to search for: ");
-                        list.search(getIntInput());
+                        listVisual.search(getIntInput());
                         break;
                     case 3: //add
                         System.out.print("Please enter the index then value of what you want to add: ");
-                        list.add(getIntInput(), getIntInput());
+                        listVisual.add(getIntInput(), getIntInput());
                 }
                 break;
             case 2: //Binary Search Tree
-                System.out.println("Nothing for now");
+                BinarySearchTreePrompter prompterBST = BinarySearchTreePrompter.newInstance(new BinarySearchTree(), 2);
+                prompterBST.add();
+                BinarySearchTreeVisual bstVisual = BinarySearchTreeVisual.newInstance(prompterBST.getTree());
+            switch (algorithmSelection)
+            {
+                case 1://Add
+                    System.out.print("Please enter the index then value of what you want to add: ");
+                    bstVisual.addNode(getIntInput());
+                case 2: //Search
+                    System.out.print("Please input an integer to search for: ");
+                    bstVisual.search(getIntInput());
+            }
+
         }
     }
 
@@ -134,9 +149,7 @@ class VisualizeApp
         {
             List<String> welcome = Files.readAllLines(Path.of("resources/welcome.txt"));
             for (String line : welcome)
-            {
                 System.out.println(line);
-            }
 
         } catch (IOException e)
         {

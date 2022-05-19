@@ -1,6 +1,8 @@
-package com.dsavisualizer;
+package com.dsavisualizer.app;
 
-import java.util.LinkedList;
+import com.dsavisualizer.LinkedList;
+import com.dsavisualizer.app.Prompter;
+
 import java.util.Scanner;
 
 public class IntegerListPrompter extends Prompter
@@ -8,20 +10,20 @@ public class IntegerListPrompter extends Prompter
     //Fields--------------------------------------------------------------------
     //--------------------------------------------------------------------------
     private final int VALUES_NEEDED;
-    private LinkedList<Integer> integerList;
+    private LinkedList integerList;
 
     //Constructor---------------------------------------------------------------
     //--------------------------------------------------------------------------
-    private IntegerListPrompter(LinkedList<Integer> integerList, int valuesNeeded)
+    private IntegerListPrompter(LinkedList integerList, int valuesNeeded)
     {
         this.VALUES_NEEDED = valuesNeeded;
         this.integerList = integerList;
     }
 
-    public static IntegerListPrompter newInstance(LinkedList<Integer> integerList, int valuesNeeded)
+    public static IntegerListPrompter newInstance(LinkedList integerList, int valuesNeeded)
     {
         //Check to ensure it is empty and not improper type (exceptions)
-        if(!integerList.isEmpty() || valuesNeeded < 1)
+        if (!integerList.isEmpty() || valuesNeeded < 1)
             throw new IllegalArgumentException();
 
         return new IntegerListPrompter(integerList, valuesNeeded);
@@ -43,32 +45,33 @@ public class IntegerListPrompter extends Prompter
             if (i.matches("\\d{1,3}"))
             {
                 number = Integer.parseInt(i);
-                if(integerList.contains(number))
+                if (integerList.contains(number))
                     duplicateValueMessage(number);
                 else if (number > -1 && number < 101)
-                    integerList.add(number);
+                    integerList.addNode(number);
                 else invalidRangeMessage(number);
-            }
-            else invalidInputMessage(i);
+            } else invalidInputMessage(i);
         }
         //-----------------------------------------
 
         add(meetsValuesNeeded());//Recurse if does not meet values needed
     }
+
     //Overloaded add method
     public void add(boolean meetValuesNeeded)
     {
-        if(meetValuesNeeded)
+        if (meetValuesNeeded)
             return;
         //else
-        System.out.println("Please add more values");
+        addMoreValuesMessage();
         add();
     }
+
     boolean meetsValuesNeeded()
     {
-        if(getIntegerList().size() < VALUES_NEEDED)
+        if (getIntegerList().size() < VALUES_NEEDED)
         {
-            System.out.println("You did not meet the required amount of values needed for the Data Structure");
+
             return false;
         }
         //else
@@ -77,7 +80,7 @@ public class IntegerListPrompter extends Prompter
 
     //Getters & Setters---------------------------------------------------------
     //--------------------------------------------------------------------------
-    public LinkedList<Integer> getIntegerList()
+    public LinkedList getIntegerList()
     {
         return integerList;
     }
@@ -86,16 +89,12 @@ public class IntegerListPrompter extends Prompter
     //Meant to test the add method
     //     public static void main(String[] args)
     //     {
-    //         LinkedList<Integer> list = new LinkedList<>();
+    //         LinkedList list = new LinkedList<>();
     //         IntegerListPrompter prompter = newInstance(list, 2);
     //         prompter.add();
     //         System.out.println(Arrays.toString(prompter.getIntegerList().toArray()));
     //     }
 
-    //TODO: INTERFACE NAMED DATASTRUCTURE - public string getName
-    //LLVisual implements datastructure
-
-    //TODO: BST visual implements DataStructure
 
     //TODO: ask package which classes implement datastructure interface
     // KLASS

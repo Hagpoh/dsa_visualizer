@@ -2,6 +2,7 @@ package com.dsavisualizer.view;
 
 import com.dsavisualizer.BinarySearchTree;
 import com.dsavisualizer.BinarySearchTree.Node;
+import com.dsavisualizer.app.Color;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,20 +12,11 @@ import static com.dsavisualizer.BinarySearchTree.branchIsEmpty;
 import static com.dsavisualizer.BinarySearchTree.getLeftNode;
 import static com.dsavisualizer.BinarySearchTree.getRightNode;
 
-public class BinarySearchTreeVisual implements Visualizer
+public class BinarySearchTreeVisual implements Searchable,Sortable,Addable
 {
-    public static void main(String[] args)
-    {
-        BinarySearchTree tree = new BinarySearchTree();
-        tree.insert(2);
-        tree.insert(1);
-        tree.insert(3);
-        tree.insert(4);
-
-    }
     //CLASS FIELDS--------------------------------------------------------------
     //--------------------------------------------------------------------------
-    private BinarySearchTree bst = new BinarySearchTree();
+    public BinarySearchTree bst;
     private final Boolean VERBOSE_TREE = true;
     private final Boolean VALUE_FOUND = true;
     private final Boolean VALUE_NOT_FOUND = false;
@@ -42,7 +34,6 @@ public class BinarySearchTreeVisual implements Visualizer
 
     //Methods-------------------------------------------------------------------
     //--------------------------------------------------------------------------
-    @Override
     public boolean search(int searchValue)
     {
         //BASE CASES-----------------------------------
@@ -70,9 +61,8 @@ public class BinarySearchTreeVisual implements Visualizer
             return search(rightNode, searchValue);
         }
     }
-
     //Recursive helper method
-    public boolean search(BinarySearchTree.Node node, int searchValue)
+    private boolean search(Node node, int searchValue)
     {
         //BASE CASES-----------------------------------
         //tree is empty
@@ -98,16 +88,19 @@ public class BinarySearchTreeVisual implements Visualizer
             printTree(leftNode, !VERBOSE_TREE);
             return search(getRightNode(node), searchValue);
         }
-
     }
 
     public void addNode(int nodeValue)
     {
+        printTree(this.bst.root, VERBOSE_TREE);
         bst.insert(nodeValue);
+        System.out.print(Color.GREEN.getColor());
+        printTree(this.bst.root, VERBOSE_TREE);
+        System.out.print(Color.DEFAULT.getColor());
     }
 
 
-    private void printTree(BinarySearchTree.Node root, boolean printCompleteTree)
+    public void printTree(BinarySearchTree.Node root, boolean printCompleteTree)
     {
         System.out.println();
 
@@ -125,11 +118,8 @@ public class BinarySearchTreeVisual implements Visualizer
 
         System.out.println();
     }
-
-
     //Prints the tree to the console in a visualizable view
     //--------------------------------------------------------------------------
-
     public static void printNode(Node root)
     {
         int maxLevel = maxLevel(root);
@@ -192,19 +182,15 @@ public class BinarySearchTreeVisual implements Visualizer
 
                 printWhitespaces(edgeLines + edgeLines - i);
             }
-
             System.out.println();
         }
-
         printNodeInternal(newNodes, level + 1, maxLevel);
     }
-
     private static void printWhitespaces(int count)
     {
         for (int i = 0; i < count; i++)
             System.out.print(" ");
     }
-
     private static int maxLevel(Node node)
     {
         if (node == null)
@@ -212,7 +198,6 @@ public class BinarySearchTreeVisual implements Visualizer
 
         return Math.max(maxLevel(node.left), maxLevel(node.right)) + 1;
     }
-
     private static <T> boolean isAllElementsNull(List<T> list)
     {
         for (Object object : list)
@@ -222,5 +207,12 @@ public class BinarySearchTreeVisual implements Visualizer
         }
 
         return true;
+    }
+
+    //Getters & Setters---------------------------------------------------------
+    //--------------------------------------------------------------------------
+    public Boolean getVERBOSE_TREE()
+    {
+        return VERBOSE_TREE;
     }
 }

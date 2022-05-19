@@ -1,27 +1,29 @@
-package com.dsavisualizer.view;
+package com.dsavisualizer.app;
 
-import com.dsavisualizer.BinarySearchTree;
+import com.dsavisualizer.LinkedList;
 import com.dsavisualizer.view.LinkedListVisual;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dsavisualizer.LinkedList;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import com.dsavisualizer.BinarySearchTree;
 
-public class LinkedListVisualTest
+import static org.junit.Assert.*;
+
+public class BinarySearchTreePrompter
 {
     //Test Fields---------------------------------------------------------------
     //--------------------------------------------------------------------------
-    LinkedListVisual visual;
-    LinkedList list;
 
     //setUp---------------------------------------------------------------------
     //--------------------------------------------------------------------------
     @Before
-    public void setUp()
+    public void setUp() throws Exception
     {
-        list = new LinkedList();
-        visual = new LinkedListVisual(list);
+
     }
+
 
     //Test Methods--------------------------------------------------------------
     //--------------------------------------------------------------------------

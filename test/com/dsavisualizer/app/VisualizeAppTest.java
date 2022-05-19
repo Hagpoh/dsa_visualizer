@@ -10,9 +10,13 @@ import java.util.Scanner;
 
 public class VisualizeAppTest
 {
+    //Test Fields---------------------------------------------------------------
+    //--------------------------------------------------------------------------
     VisualizeApp app;
     Scanner scanner ;
 
+    //setUp---------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     @Before
     public void setUp()
     {
@@ -20,8 +24,8 @@ public class VisualizeAppTest
         scanner = new Scanner(System.in);
     }
 
-
-
+    //Test Methods--------------------------------------------------------------
+    //--------------------------------------------------------------------------
     @Test
     public void validInputAfterDataStructureAndAlgorithmPrompt_shouldReturnInputRightBack()
     {
@@ -45,7 +49,7 @@ public class VisualizeAppTest
 
 
 
-    //TODO: do more to test these methods below---------------------------------
+    //TODO: do more to test these methods below??-------------------------------
     //--------------------------------------------------------------------------
     @Test
     public void welcomeHeader_findingFile_shouldNotThrowException()

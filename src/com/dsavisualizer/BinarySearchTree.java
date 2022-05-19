@@ -3,18 +3,34 @@ package com.dsavisualizer;
 
 import java.util.Vector;
 
-public class BinarySearchTree {
-    public boolean search(int number) {
-        return false;
+public class BinarySearchTree implements DataStructure
+{
+    //Fields--------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    public Node root;
+
+
+    //Constructors--------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    public BinarySearchTree()
+    {
+        root = null;
+    }
+    public BinarySearchTree(int value)
+    {
+        root = new Node(value);
     }
 
-    public boolean isEmpty() {
-        if(root == null && root.left == null && root.right == null)
+    //Methods-------------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    public boolean isEmpty()
+    {
+        if (root == null)
             return true;
         return false;
     }
-
-    public void balance() {
+    public void balance()
+    {
         // Store nodes of given BST in sorted order
         Vector<Node> nodes = new Vector<Node>();
         storeBSTNodes(root, nodes);
@@ -35,8 +51,7 @@ public class BinarySearchTree {
         nodes.add(root);
         storeBSTNodes(root.right, nodes);
     }
-    private Node buildTreeUtil(Vector<Node> nodes, int start,
-                               int end)
+    private Node buildTreeUtil(Vector<Node> nodes, int start, int end)
     {
         // base case
         if (start > end)
@@ -54,7 +69,8 @@ public class BinarySearchTree {
         return node;
     }
 
-    public int size() {
+    public int size()
+    {
         //PREORDER TRAVERSAL TO GET SIZE
         int count = 0;
 
@@ -66,46 +82,27 @@ public class BinarySearchTree {
     private int size(Node root, int count)
     {
         int counter = count;
-
-        if(root != null)
+        if (root != null)
         {
             counter++;
             counter = size(root.left, counter);
             counter = size(root.right, counter);
         }
-
         return counter;
     }
 
-    //Node class setting up a basic node
-    public class Node {
-        public int key;
-        public Node left, right;
-
-        public Node(int key) {
-            this.key = key;
-        }
-    }
-
-    public Node root;
-
-    // Constructor
-    public BinarySearchTree() {
-        root = null;
-    }
-
-    public BinarySearchTree(int value) {
-        root = new Node(value);
-    }
-
     // Calls the insertRec method passing in root node and provided key
-    public void insert(int key) {
+    public void insert(int key)
+    {
         root = insertRec(root, key);
+        balance();
     }
 
-    Node insertRec(Node root, int key) {
+    private Node insertRec(Node root, int key)
+    {
         // Check tree to see if empty
-        if (root == null) {
+        if (root == null)
+        {
             root = new Node(key);
             return root;
         }
@@ -120,44 +117,61 @@ public class BinarySearchTree {
     }
 
     // Call inorderRec passing in root node
-    public void inorder() {
-        inorderRec(root);
+    public String inorder()
+    {
+        StringBuilder tree = new StringBuilder("[ ");
+        tree.append(inorderRec(root));
+        tree.append("]");
+        return tree.toString();
     }
-
-    public void preorder() {
-        preorderRec(root);
+    public String preorder()
+    {
+        StringBuilder tree = new StringBuilder("[ ");
+        tree.append(preorderRec(root));
+        tree.append("]");
+        return tree.toString();
     }
 
     // Preorder traversal of BST
-    public void preorderRec(Node node) {
-        if (node != null) {
-            System.out.println(node.key);
-            preorderRec(node.left);
-            preorderRec(node.right);
+    private String preorderRec(Node node)
+    {
+        StringBuilder tree = new StringBuilder();
+        if (node != null)
+        {
+            tree.append(node.key + " ");
+            tree.append(preorderRec(node.left));
+            tree.append(preorderRec(node.right));
         }
+        return tree.toString();
     }
 
     // Inorder traversal of BST
-    void inorderRec(Node root) {
-        if (root != null) {
-            inorderRec(root.left);
-            System.out.println(root.key);
-            inorderRec(root.right);
-        }
-    }
+    private String inorderRec(Node root)
+    {
+        StringBuilder tree = new StringBuilder();
 
-    public boolean contains(int key) {
+        if (root != null)
+        {
+            tree.append(inorderRec(root.left));
+            tree.append(root.key + " ");
+            tree.append(inorderRec(root.right));
+        }
+
+        return tree.toString();
+    }
+    public boolean contains(int key)
+    {
         return containsRec(root, key);
     }
-
     private boolean containsRec(Node root, int key)
     {
-        if(root == null || (root.key != key && branchIsEmpty(root)))
+        if (root == null || (root.key != key && branchIsEmpty(root)))
             return false;
-        else if (root.key == key){
+        else if (root.key == key)
+        {
             return true;
         }
-        if(root.key < key)
+        if (root.key < key)
             return containsRec(root.right, key);
         else
             return containsRec(root.left, key);
@@ -165,22 +179,37 @@ public class BinarySearchTree {
 
     //Getters & Setters---------------------------------------------------------
     //--------------------------------------------------------------------------
-    public static boolean branchIsEmpty(Node node) {
+    public static boolean branchIsEmpty(Node node)
+    {
         if (node.left == null && node.right == null)
             return true;
         return false;
     }
-
-    public int getKey() {
+    public int getKey()
+    {
         return this.root.key;
     }
-
-    public static Node getLeftNode(Node node) {
+    public static Node getLeftNode(Node node)
+    {
         return node.left;
     }
-
-    public static Node getRightNode(Node node) {
-
+    public static Node getRightNode(Node node)
+    {
         return node.right;
+    }
+
+
+    //INNER CLASSES-------------------------------------------------------------
+    //--------------------------------------------------------------------------
+    //Node class setting up a basic node
+    public static class Node
+    {
+        public int key;
+        public Node left, right;
+
+        public Node(int key)
+        {
+            this.key = key;
+        }
     }
 }
