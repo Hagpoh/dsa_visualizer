@@ -39,13 +39,10 @@ class VisualizeApp
     }
 
     private void resetMenu() {
-        try {
+        Scanner scanner = new Scanner(System.in);
             System.out.println("Press any key to continue");
-            System.in.read();
+            scanner.nextLine();
             Console.clear();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     //Performs the given action depending on the input provided by the user
