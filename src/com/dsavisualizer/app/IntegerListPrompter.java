@@ -1,7 +1,6 @@
 package com.dsavisualizer.app;
 
 import com.dsavisualizer.LinkedList;
-import com.dsavisualizer.app.Prompter;
 
 import java.util.Scanner;
 

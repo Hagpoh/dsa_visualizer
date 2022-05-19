@@ -1,9 +1,6 @@
 package com.dsavisualizer.view;
 
-import com.dsavisualizer.BinarySearchTree;
-import com.dsavisualizer.view.LinkedListVisual;
 import org.junit.Before;
-import org.junit.Test;
 
 import com.dsavisualizer.LinkedList;
 

@@ -9,7 +9,6 @@ import com.dsavisualizer.LinkedList;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -35,9 +34,20 @@ class VisualizeApp
             algorithmSelection = getMenuInput();
             System.out.println();
             performSelection();
-            Console.clear();
+            resetMenu();
         }
     }
+
+    private void resetMenu() {
+        try {
+            System.out.println("Press any key to continue");
+            System.in.read();
+            Console.clear();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     //Performs the given action depending on the input provided by the user
     private void performSelection()
     {

@@ -115,7 +115,7 @@ public class LinkedListVisual implements Searchable,Sortable,Addable
     {
         System.out.print("head --> ");
 
-        com.dsavisualizer.LinkedList.Node n = list.head;
+        LinkedList.Node n = list.head;
 
         while (n != null)
         {
