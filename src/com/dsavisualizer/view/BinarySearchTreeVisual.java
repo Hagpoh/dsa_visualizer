@@ -36,6 +36,7 @@ public class BinarySearchTreeVisual implements Searchable,Sortable,Addable
     //--------------------------------------------------------------------------
     public boolean search(int searchValue)
     {
+        printTree(this.bst.root, VERBOSE_TREE);
         //BASE CASES-----------------------------------
         //tree is empty
         if (branchIsEmpty(bst.root))
@@ -49,13 +50,17 @@ public class BinarySearchTreeVisual implements Searchable,Sortable,Addable
         }
         //----------------------------------------------
 
-        else if (bst.getRootKey() < searchValue)
+        else if (bst.getRootKey() > searchValue)
         {
+            System.out.println("Cutting search in half");
+            System.out.println("Searching left subtree");
             BinarySearchTree.Node leftNode = getLeftNode(this.bst.root);
             printTree(leftNode, !VERBOSE_TREE);
             return search(leftNode, searchValue);
-        } else //bst.getLeftNodeValue() > search
+        } else //bst.getLeftNodeValue() < search
         {
+            System.out.println("Cutting search in half");
+            System.out.println("Searching right subtree");
             BinarySearchTree.Node rightNode = getRightNode(this.bst.root);
             printTree(rightNode, !VERBOSE_TREE);
             return search(rightNode, searchValue);
@@ -66,7 +71,7 @@ public class BinarySearchTreeVisual implements Searchable,Sortable,Addable
     {
         //BASE CASES-----------------------------------
         //tree is empty
-        if (branchIsEmpty(node))
+        if (node.key != searchValue && (branchIsEmpty(node) || node.key < searchValue && node.right == null || node.key > searchValue && node.left == null))
         {
             System.out.println("NOT FOUND");
             return VALUE_NOT_FOUND;
@@ -79,14 +84,19 @@ public class BinarySearchTreeVisual implements Searchable,Sortable,Addable
 
         else if (node.key < searchValue)
         {
-            BinarySearchTree.Node leftNode = getLeftNode(node);
-            printTree(leftNode, !VERBOSE_TREE);
-            return search(getLeftNode(node), searchValue);
+            System.out.println("Cutting search in half");
+            System.out.println("Searching right subtree");
+            BinarySearchTree.Node rightNode = getRightNode(node);
+            printTree(rightNode, !VERBOSE_TREE);
+            return search(rightNode, searchValue);
         } else // (bst.getLeftNodeValue() > search)
         {
+
+            System.out.println("Cutting search in half");
+            System.out.println("Searching left subtree");
             BinarySearchTree.Node leftNode = getLeftNode(node);
             printTree(leftNode, !VERBOSE_TREE);
-            return search(getRightNode(node), searchValue);
+            return search(leftNode, searchValue);
         }
     }
 
@@ -100,21 +110,19 @@ public class BinarySearchTreeVisual implements Searchable,Sortable,Addable
     }
 
 
-    public void printTree(BinarySearchTree.Node root, boolean printCompleteTree)
+    public void printTree(Node root, boolean printCompleteTree)
     {
         System.out.println();
 
         if (printCompleteTree)
         {
-            //TODO: print whole tree
-            //TODO: print "root" node red and all other nodes default
-            // THIS DOES NOT NEED TO BE THE ROOT NODE BUT THE root THAT'S PASSED IN
             printNode(bst.root);
         }
 
-        //else only print subtree of this node and the children nodes
+        //only print subtree of this node and the children nodes
         //TODO:print the current node red and the other nodes default
-        printNode(root);
+        else
+            printNode(root);
 
         System.out.println();
     }
