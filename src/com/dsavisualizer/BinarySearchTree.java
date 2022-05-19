@@ -97,6 +97,10 @@ public class BinarySearchTree implements DataStructure
         root = insertRec(root, key);
         balance();
     }
+    public void insert(Node node)
+    {
+        root = insertRec(root, node.key);
+    }
 
     private Node insertRec(Node root, int key)
     {

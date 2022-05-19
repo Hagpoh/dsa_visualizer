@@ -57,7 +57,7 @@ class VisualizeApp
                         listVisual.search(getIntInput());
                         break;
                     case 3: //add
-                        System.out.print("Please enter the index then value of what you want to add: ");
+                        System.out.print("Please enter the index then value of what you want to add separated by a line: ");
                         listVisual.add(getIntInput(), getIntInput());
                 }
                 break;
@@ -69,7 +69,10 @@ class VisualizeApp
             {
                 case 1://Add
                     System.out.print("Please enter the value of what you want to add: ");
-                    bstVisual.addNode(getIntInput());
+                    boolean getMoreInput = true;
+                    //TODO:swap boolean order. Currently not intuitive
+                    while(getMoreInput)//else Continue
+                        getMoreInput = bstVisual.addNode(getIntInput());
                     break;
                 case 2: //Search
                     System.out.print("Please input an integer to search for: ");

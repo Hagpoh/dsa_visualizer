@@ -100,13 +100,28 @@ public class BinarySearchTreeVisual implements Searchable,Sortable,Addable
         }
     }
 
-    public void addNode(int nodeValue)
+    public boolean addNode(int nodeValue)
     {
+        if(bst.contains(nodeValue))
+        {
+            System.out.print("Tree already has value " + nodeValue + ". please try again:");
+            return true;
+        }
+        System.out.println("OLD TREE");
         printTree(this.bst.root, VERBOSE_TREE);
-        bst.insert(nodeValue);
-        System.out.print(Color.GREEN.getColor());
+        bst.insert(new Node(nodeValue));
+        System.out.print(Color.BLUE.getColor());
+        System.out.println("NEW TREE");
         printTree(this.bst.root, VERBOSE_TREE);
         System.out.print(Color.DEFAULT.getColor());
+        System.out.println("Tree must be balanced to ensure we maintain fast search speeds.");
+        System.out.println("A binary search tree is balanced if the depth of the two subtrees of every node never differs by more than 1.");
+        bst.balance();
+        System.out.print(Color.GREEN.getColor());
+        System.out.println("Tree after balancing");
+        printTree(this.bst.root, VERBOSE_TREE);
+        System.out.print(Color.DEFAULT.getColor());
+        return false;
     }
 
 
