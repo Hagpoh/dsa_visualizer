@@ -93,44 +93,18 @@ class VisualizeApp
             try
             {
                 System.out.print("Enter your choice: ");
-                input = Integer.parseInt(scanner.next("\\d"));
+                input = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e)
             {
                 System.out.println("Invalid selection. Please enter a valid selection.");
-            } catch (InputMismatchException e){
-                System.out.println("Please input only 1 digit.");
-            }
         }
         if (input == 0)
         {
             System.out.println("Thanks for using the DSA Analyzer!");
             System.exit(0);
         }
-        return input;
     }
-    private int getMenuInput(int bottomRange, int topRange)
-    {
-        Scanner scanner = new Scanner(System.in);
-        int input=-1;
-        while(!(inRange(input, bottomRange, topRange)))
-        {
-            String stringInput = scanner.nextLine();
-
-            if(stringInput.matches("\\d"))
-            {
-                input = Integer.parseInt(stringInput);
-                if (!inRange(input, bottomRange, topRange))
-                    System.out.println("Your input "+ String.valueOf(input) +" is not within range. Please enter a valid number.");
-            }
-            //else
-            System.out.println("Your input " + stringInput + " is invalid. Please try again.");
-
-        }
         return input;
-    }
-    private boolean inRange(int input, int bottomRange, int topRange)
-    {
-        return ((input >= bottomRange) && (input <= topRange)) ? true : false;
     }
 
     //Gets an integer value input
