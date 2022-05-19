@@ -183,9 +183,7 @@ public class LinkedListVisual implements Searchable,Sortable,Addable
 
             } else
             {
-
                 System.out.format("Check: The node %d is greater than the pivot node %d\n\n", start.data, pivot);
-                break;
             }
             start = start.next;
         }
@@ -218,7 +216,8 @@ public class LinkedListVisual implements Searchable,Sortable,Addable
     public void sort(Node start, Node end)
     {
 
-        if (start == null || start == end || start == end.next) return;
+        if (start == null || start == end || start == end.next)
+            return;
 
 
         // split list and partition recurse
