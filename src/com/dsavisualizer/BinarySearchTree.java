@@ -185,7 +185,7 @@ public class BinarySearchTree implements DataStructure
             return true;
         return false;
     }
-    public int getKey()
+    public int getRootKey()
     {
         return this.root.key;
     }

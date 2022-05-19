@@ -42,14 +42,14 @@ public class BinarySearchTreeVisual implements Searchable,Sortable,Addable
         {
             System.out.println("Tree is empty");
             return VALUE_NOT_FOUND;
-        } else if (bst.getKey() == searchValue)
+        } else if (bst.getRootKey() == searchValue)
         {
             System.out.println("Found!");
             return VALUE_FOUND;
         }
         //----------------------------------------------
 
-        else if (bst.getKey() < searchValue)
+        else if (bst.getRootKey() < searchValue)
         {
             BinarySearchTree.Node leftNode = getLeftNode(this.bst.root);
             printTree(leftNode, !VERBOSE_TREE);
@@ -70,14 +70,14 @@ public class BinarySearchTreeVisual implements Searchable,Sortable,Addable
         {
             System.out.println("NOT FOUND");
             return VALUE_NOT_FOUND;
-        } else if (bst.getKey() == searchValue)
+        } else if (node.key == searchValue)
         {
             System.out.println("Found!");
             return VALUE_FOUND;
         }
         //----------------------------------------------
 
-        else if (bst.getKey() < searchValue)
+        else if (node.key < searchValue)
         {
             BinarySearchTree.Node leftNode = getLeftNode(node);
             printTree(leftNode, !VERBOSE_TREE);
